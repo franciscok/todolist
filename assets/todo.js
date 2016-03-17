@@ -12,7 +12,8 @@
 
 
 var todo = todo || {},
-    data = JSON.parse(localStorage.getItem("todoData"));
+    //@TODO: obtener el objeto y parsearlo pista: se llama todoData
+    data = ;
 
 data = data || {};
 
@@ -44,7 +45,8 @@ data = data || {};
 
         // Adding drop function to each category of task
         $.each(codes, function (index, value) {
-            $(value).droppable({
+            //@TODO: usar drop
+            $(value).usoalgunafuncion({
                 drop: function (event, ui) {
                     var element = ui.helper,
                         css_id = element.attr("id"),
@@ -62,7 +64,7 @@ data = data || {};
 
                     // Updating Local Storage
                     data[id] = object;
-                    localStorage.setItem("todoData", JSON.stringify(data));
+                    //@TODO: es hora de guardar en localStorage en el objeto todoData la data
 
                     // Hiding Delete Area
                     $("#" + defaults.deleteDiv).hide();
@@ -83,7 +85,7 @@ data = data || {};
 
                 // Updating local storage
                 delete data[id];
-                localStorage.setItem("todoData", JSON.stringify(data));
+                //@TODO: es hora de guardar en localStorage en el objeto todoData la data
 
                 // Hiding Delete Area
                 $("#" + defaults.deleteDiv).hide();
@@ -122,12 +124,15 @@ data = data || {};
             "text": params.description
         }).appendTo(wrapper);
 
-        wrapper.draggable({
+        //@TODO: darle la responsabilidad de movible al objeto
+        wrapper.muevelo({
             start: function() {
-                $("#" + defaults.deleteDiv).show();
+                //@TODO: al empezar que se muestre usar .....
+                $("#" + defaults.deleteDiv).mostrar();
             },
             stop: function() {
-                $("#" + defaults.deleteDiv).hide();
+                //@TODO: al terminar que se oculte usar .....
+                $("#" + defaults.deleteDiv).oculto();
             },
             revert: "invalid",
             revertDuration : 200
@@ -137,7 +142,8 @@ data = data || {};
 
     // Remove task
     var removeElement = function (params) {
-        $("#" + defaults.taskId + params.id).remove();
+        //@TODO: remover elemento usando la api de jquery
+        $("#" + defaults.taskId + params.id).unafuncion();
     };
 
     todo.add = function() {
