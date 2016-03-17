@@ -218,9 +218,13 @@ data = data || {};
     };
 
     todo.clear = function () {
-        data = {};
-        localStorage.setItem("todoData", JSON.stringify(data));
-        $("." + defaults.todoTask).remove();
+        todo.clear = function () {
+            data = {};
+            //@TODO: hacer un seteo de todoData con data vacio
+
+            //remueve todas las tareas del drag and drop.
+            $("." + defaults.todoTask).remove();
+        };
     };
 
 })(todo, data, jQuery);
