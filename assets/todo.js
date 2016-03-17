@@ -4,11 +4,12 @@
  */
 
 /* Some info
-Using newer versions of jQuery and jQuery UI in place of the links given in problem statement
-All data is stored in local storage
-User data is extracted from local storage and saved in variable todo.data
-Otherwise, comments are provided at appropriate places
-*/
+ Using newer versions of jQuery and jQuery UI in place of the links given in problem statement
+ All data is stored in local storage
+ User data is extracted from local storage and saved in variable todo.data
+ Otherwise, comments are provided at appropriate places
+ */
+
 
 var todo = todo || {},
     data = JSON.parse(localStorage.getItem("todoData"));
@@ -18,19 +19,19 @@ data = data || {};
 (function(todo, data, $) {
 
     var defaults = {
-            todoTask: "todo-task",
-            todoHeader: "task-header",
-            todoDate: "task-date",
-            todoDescription: "task-description",
-            taskId: "task-",
-            formId: "todo-form",
-            dataAttribute: "data",
-            deleteDiv: "delete-div"
-        }, codes = {
-            "1" : "#pending",
-            "2" : "#inProgress",
-            "3" : "#completed"
-        };
+        todoTask: "todo-task",
+        todoHeader: "task-header",
+        todoDate: "task-date",
+        todoDescription: "task-description",
+        taskId: "task-",
+        formId: "todo-form",
+        dataAttribute: "data",
+        deleteDiv: "delete-div"
+    }, codes = {
+        "1" : "#pending",
+        "2" : "#inProgress",
+        "3" : "#completed"
+    };
 
     todo.init = function (options) {
 
@@ -41,47 +42,31 @@ data = data || {};
             generateElement(params);
         });
 
-        /*generateElement({
-            id: "123",
-            code: "1",
-            title: "asd",
-            date: "22/12/2013",
-            description: "Blah Blah"
-        });*/
-
-        /*removeElement({
-            id: "123",
-            code: "1",
-            title: "asd",
-            date: "22/12/2013",
-            description: "Blah Blah"
-        });*/
-
         // Adding drop function to each category of task
         $.each(codes, function (index, value) {
             $(value).droppable({
                 drop: function (event, ui) {
-                        var element = ui.helper,
-                            css_id = element.attr("id"),
-                            id = css_id.replace(options.taskId, ""),
-                            object = data[id];
+                    var element = ui.helper,
+                        css_id = element.attr("id"),
+                        id = css_id.replace(options.taskId, ""),
+                        object = data[id];
 
-                            // Removing old element
-                            removeElement(object);
+                    // Removing old element
+                    removeElement(object);
 
-                            // Changing object code
-                            object.code = index;
+                    // Changing object code
+                    object.code = index;
 
-                            // Generating new element
-                            generateElement(object);
+                    // Generating new element
+                    generateElement(object);
 
-                            // Updating Local Storage
-                            data[id] = object;
-                            localStorage.setItem("todoData", JSON.stringify(data));
+                    // Updating Local Storage
+                    data[id] = object;
+                    localStorage.setItem("todoData", JSON.stringify(data));
 
-                            // Hiding Delete Area
-                            $("#" + defaults.deleteDiv).hide();
-                    }
+                    // Hiding Delete Area
+                    $("#" + defaults.deleteDiv).hide();
+                }
             });
         });
 
@@ -137,15 +122,15 @@ data = data || {};
             "text": params.description
         }).appendTo(wrapper);
 
-	    wrapper.draggable({
+        wrapper.draggable({
             start: function() {
                 $("#" + defaults.deleteDiv).show();
             },
             stop: function() {
                 $("#" + defaults.deleteDiv).hide();
             },
-	        revert: "invalid",
-	        revertDuration : 200
+            revert: "invalid",
+            revertDuration : 200
         });
 
     };
@@ -204,8 +189,8 @@ data = data || {};
 
         if (!responseDialog.length) {
             responseDialog = $("<div />", {
-                    title: title,
-                    id: responseId
+                title: title,
+                id: responseId
             }).appendTo($("body"));
         }
 
@@ -217,7 +202,7 @@ data = data || {};
             }
         };
 
-	    responseDialog.dialog({
+        responseDialog.dialog({
             autoOpen: true,
             width: 400,
             modal: true,
